@@ -2,6 +2,7 @@ package dungeon;
 
 public class Character
 {
+    //
     int lpMax; //Max Lifepoints
     int epMax; //Max EnergyPoints
     int lp; //Current LifePoints

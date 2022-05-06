@@ -1,0 +1,94 @@
+             COMBAT:
+| Enemy1 |  | Enemy2 |  | Enemy3 |
+|  100%  |  |  100%  |  |  100%  |
+|                                |
+|================================|
+|                                |
+|Martial |  | Ranger |  | Mystic |
+|HP:20/20|  |HP:10/10|  |HP:15/15|
+|EP:10/10|  |EP:20/20|  |EP:15/15|
+
+Martial's turn
+Current status effects: None
+
+What would you like to do?
+(a)ttack; (s)kill; (d)efend; (f)lee; (c)ancel
+>a
+
+<new screen>
+             COMBAT:
+| Enemy1 |  | Enemy2 |  | Enemy3 |
+|  100%  |  |  100%  |  |  100%  |
+|                                |
+|================================|
+|                                |
+|Martial |  | Ranger |  | Mystic |
+|HP:20/20|  |HP:10/10|  |HP:15/15|
+|EP:10/10|  |EP:20/20|  |EP:15/15|
+
+Martial's turn
+Current status effects: None
+
+Who would you like to attack?
+1. Enemy1
+2. Enemy2
+3. Enemy3
+>1
+
+<new screen>
+             COMBAT:
+| Enemy1 |  | Enemy2 |  | Enemy3 |
+|  100%  |  |  100%  |  |  100%  |
+|                                |
+|================================|
+|                                |
+|Martial |  | Ranger |  | Mystic |
+|HP:20/20|  |HP:10/10|  |HP:15/15|
+|EP:10/10|  |EP:20/20|  |EP:15/15|
+
+Rangers's turn
+Current status effects: None
+
+What would you like to do?
+(a)ttack; (s)kill; (d)efend; (f)lee; (c)ancel
+>s
+<new screen>
+
+             COMBAT:
+| Enemy1 |  | Enemy2 |  | Enemy3 |
+|  100%  |  |  100%  |  |  100%  |
+|                                |
+|================================|
+|                                |
+|Martial |  | Ranger |  | Mystic |
+|HP:20/20|  |HP:10/10|  |HP:15/15|
+|EP:10/10|  |EP:20/20|  |EP:15/15|
+
+Rangers's turn
+Current status effects: None
+
+Skills
+1. Poisoned Tip      [3]
+2. Paralyzing Strike [3]
+3. Sneak             [2]
+4. Execute           [5]
+(c)ancel
+>1
+
+<new screen>
+             COMBAT:
+| Enemy1 |  | Enemy2 |  | Enemy3 |
+|  100%  |  |  100%  |  |  100%  |
+|                                |
+|================================|
+|                                |
+|Martial |  | Ranger |  | Mystic |
+|HP:20/20|  |HP:10/10|  |HP:15/15|
+|EP:10/10|  |EP:20/20|  |EP:15/15|
+
+Who would you like to effect?
+1. Enemy1
+2. Enemy2
+3. Enemy3
+>2
+
