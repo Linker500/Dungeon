@@ -1,4 +1,7 @@
+package dungeon;
+
 import java.util.Scanner;
+
 public class User
 {
    Scanner in;
