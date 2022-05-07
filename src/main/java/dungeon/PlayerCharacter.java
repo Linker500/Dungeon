@@ -2,8 +2,8 @@ package dungeon;
 
 public class PlayerCharacter extends Character
 {
-    public PlayerCharacter()
+    public PlayerCharacter(String newName, int newLpMax, int newEpMax)
     {
-        
+        super(newName, newLpMax, newEpMax);
     }
 }
