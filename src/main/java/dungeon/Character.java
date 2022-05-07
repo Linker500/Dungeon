@@ -1,6 +1,6 @@
 package dungeon;
 
-public class Character
+public abstract class Character
 {
     //
     int lpMax; //Max Lifepoints

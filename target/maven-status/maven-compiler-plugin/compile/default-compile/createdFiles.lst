@@ -1,4 +1,6 @@
-Map.class
-Dungeon.class
-User.class
-Character.class
+dungeon/User.class
+dungeon/Character.class
+dungeon/Map.class
+dungeon/NonPlayerCharacter.class
+dungeon/PlayerCharacter.class
+dungeon/Dungeon.class
