@@ -1,6 +1,6 @@
+dungeon/Combat.class
 dungeon/User.class
 dungeon/Character.class
-Combat.class
 dungeon/Map.class
 dungeon/NonPlayerCharacter.class
 dungeon/PlayerCharacter.class

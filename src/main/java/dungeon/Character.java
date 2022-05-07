@@ -1,13 +1,13 @@
 package dungeon;
 
-public abstract class Character
+public class Character
 {
-    String name;
+    public String name;
     
-    int lpMax; //Max Lifepoints
-    int epMax; //Max EnergyPoints
-    int lp; //Current LifePoints
-    int ep; //Current EnergyPoints
+    public int lpMax; //Max Lifepoints
+    public int epMax; //Max EnergyPoints
+    public int lp; //Current LifePoints
+    public int ep; //Current EnergyPoints
 
     public Character(String newName, int newLpMax, int newEpMax)
     {
