@@ -2,7 +2,6 @@ package dungeon;
 
 import java.util.ArrayList;
 
-//TODO: Do I really need this class? Or can I just use arraylists of party members manually?
 public class Party
 {
     private ArrayList<Character> members;
@@ -11,7 +10,6 @@ public class Party
     public Party()
     {
         members = new ArrayList<Character>();
-        intelligence = new Human();
     }
 
     public Party(ArrayList<Character> newMembers)

@@ -9,8 +9,12 @@ public class Character
     public int lp; //Current LifePoints
     public int ep; //Current EnergyPoints
 
+    private Intelligence intelligence;
+
     public Character()
     {
+        intelligence = new IntAttack();
+
         name = "Name";
         lpMax = 10;
         epMax = 10;
@@ -19,10 +23,17 @@ public class Character
 
     public Character(String newName, int newLpMax, int newEpMax)
     {
+        intelligence = new IntAttack();
+
         name = newName;
         lpMax = newLpMax;
         epMax = newEpMax;
         restore();
+    }
+
+    public Action act(Party party, Party foes)
+    {
+        return intelligence.act(party, foes);
     }
 
     public void heal(int healed) //Gain lp
