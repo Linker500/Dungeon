@@ -4,30 +4,43 @@ import java.util.ArrayList;
 
 public class Combat
 {
-    Party PC; //TODO these names are temporary as idk what will technically differentiate them at this time.
-    Party NPC;
+    Party pc;
+    Party npc;
+    UI ui;
 
-    public Combat(PCParty newPC, NPCParty newNPC)
+    public Combat(Party newPc, Party newNpc)
     {
-        PC = newPC;
-        NPC = newNPC;
+        pc = newPc;
+        npc = newNpc;
+        ui = new UI(); //TODO: don't just make this here, initialize it once for the entire game somewhere else
     }
 
     public void start()
     {
-        
+        boolean end = false;
+        for(int numb=1; !end; numb++)
+            end = round(numb);
     }
 
-    public void turn()
+    public boolean round(int numb)
     {
+        ArrayList<Action> actions = ui.combat(pc, npc, numb);
 
-        ArrayList
-        for(int i=0; i<NPC.size(); i++) //Quene NPC ACtions
+        //Quene PC Actions using player input for the entire party, ignoring specific character's ai.
+        
+        for(int i=0; i<npc.size(); i++) //Quene NPC Actions using their included ai.
         {
-            if(NPC.get(i).lp >0) //Only give turns to living players. Necromancy bad.
+            if(npc.get(i).lp >0) //Only give turns to living characters. Necromancy bad. //TODO: foreach loop
             {
-                NPC.get(i).act();
+                actions.add(npc.get(i).act(npc, pc));
             }
         }
+
+        for(Action i : actions)
+            ui.output(i.use());
+
+        //If either party is defeated, or if flee, return true;
+
+        return false;
     }
 }

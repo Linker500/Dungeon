@@ -7,11 +7,8 @@ public class IntAttack implements Intelligence
 
     }
 
-    public Action act(Party party, Party foes) //Always attack a random party member. That's... it. For testing purposes obviously.
+    public Action act(Character user, Party party, Party foes) //Always attack a random party member. That's... it. For testing purposes obviously.
     {
-        for(int i=0; i<party.alive(); i++)
-        {
-            
-        }
+        return new Action(user, foes, 0);
     }
 }

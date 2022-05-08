@@ -1,6 +1,7 @@
 package dungeon;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class UI
 {
@@ -9,6 +10,73 @@ public class UI
    public UI()
    {
       in = new Scanner(System.in);
+   }
+
+   public ArrayList<Action> combat(Party pc, Party npc, int round)
+   {
+      ArrayList<Action> actions = new ArrayList<Action>();
+
+      for(int i=0; i<pc.size(); i++) //TODO: foreach looppppp
+      {
+         boolean loop = false;
+         if(pc.get(i).lp > 0)
+            loop = true;
+
+         while(loop)
+         {
+            clear();
+            output(stringCombat(pc.get(i), pc, npc, round));
+            output("What would you like to do?\n(a)ttack; (s)kill; (d)efend; (f)lee; (c)ancel;");
+
+            String option = input();
+            option.toLowerCase();
+            if(option.equals("a"))
+            {
+               Action action;
+
+               if(false)// if(npc.size() > 1) //TODO: finish target select
+               {
+                  boolean loop2 = true;
+                  while(loop2)
+                  {
+                     clear();
+                     output(stringCombat(pc.get(i), pc, npc, round));
+                     
+                     String targets = "";
+                     for(int j=1; j<npc.size()+1; j++)
+                        targets += j+"; ";
+                     output("Attack which target?\n"+targets);
+                     option = input();
+                  }
+                  
+                  int target = 1;
+
+                  action = new Action(pc.get(i), npc, target);
+                  
+               }
+               else
+                  action = new Action(pc.get(i), npc, 0);
+
+               actions.add(action);
+               loop = false;
+            }
+
+            else
+            {
+               output("Invalid option.");
+               try
+               {
+                  Thread.sleep(3000);
+               }
+               catch (Exception e)
+               {
+                  System.out.println(e);
+               }
+            }
+         }
+      }
+
+      return actions;
    }
    
    public void output(String string)
@@ -20,6 +88,24 @@ public class UI
    {
       System.out.print("\n>");
       return in.nextLine();
+   }
+
+   public void clear()
+   {
+      System.out.print("\033[H\033[2J");
+   }
+
+   //--------------------------------------------------------\\
+
+   public String stringCombat(Character character, Party pc, Party npc, int round)
+   {
+      //TODO: both are set as "stringPCs" because the verbosity of the pc block is useful for testing
+      return "Round " + round +"\n"+
+      stringPCs(pc)+"\n"+
+      "|========|\n"+
+      stringPCs(pc)+
+      character.name + "'s turn"+
+      "Current status effects: NOT IMPLEMENTED";
    }
 
    public String stringPCs(Party party)

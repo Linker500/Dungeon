@@ -2,7 +2,7 @@ package dungeon;
 
 import java.util.ArrayList;
 
-public class Party
+public class Party //TODO: implement iteratable?
 {
     private ArrayList<Character> members;
     
@@ -22,12 +22,6 @@ public class Party
     public Character get(int number) {return members.get(number);}
     public int size() {return members.size();}
 
-    public String act(int member, Party foes)
-    {
-        intelligence.act(this, foes);
-        return "";
-    }
-    
     public void restore() //Full restore LP and EP to all party members
     {
         for(int i=0; i< size(); i++)

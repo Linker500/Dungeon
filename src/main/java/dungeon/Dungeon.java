@@ -10,9 +10,8 @@ public class Dungeon
       Party party2 = new Party();
       party2.add(new Character());
 
-      System.out.print(stringNPCs(party2));
-      System.out.println();
-      System.out.print(stringPCs(party1));
+      Combat combat = new Combat(party1, party2);
+      combat.start();
    }
 
    //TODO: idk where this goes maybe in a util class? is here for now though

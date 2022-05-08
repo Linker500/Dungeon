@@ -2,5 +2,5 @@ package dungeon;
 
 public interface Intelligence
 {
-    public Action act(Party party, Party foes);
+    public Action act(Character user, Party party, Party foes);
 }

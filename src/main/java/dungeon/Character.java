@@ -33,7 +33,7 @@ public class Character
 
     public Action act(Party party, Party foes)
     {
-        return intelligence.act(party, foes);
+        return intelligence.act(this, party, foes);
     }
 
     public void heal(int healed) //Gain lp
