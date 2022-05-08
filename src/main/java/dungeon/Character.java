@@ -9,6 +9,14 @@ public class Character
     public int lp; //Current LifePoints
     public int ep; //Current EnergyPoints
 
+    public Character()
+    {
+        name = "Name";
+        lpMax = 10;
+        epMax = 10;
+        restore();
+    }
+
     public Character(String newName, int newLpMax, int newEpMax)
     {
         name = newName;
@@ -17,7 +25,39 @@ public class Character
         restore();
     }
 
-    public void restore () //Full restore
+    public void heal(int healed) //Gain lp
+    {
+        lp += healed;
+
+        if(lp > lpMax)
+            lp = lpMax;
+    }
+
+    public void damage(int damaged) //Lose lp
+    {
+        lp -= damaged;
+        
+        if(lp < 0)
+            lp = 0;
+    }
+
+    public void refresh(int refreshed) //Gain ep
+    {
+        ep += refreshed;
+
+        if(ep > epMax)
+            ep = epMax;
+    }
+
+    public void drain(int drained) //Lose ep
+    {
+        ep -= drained;
+
+        if(ep <0)
+            ep = 0;
+    }
+
+    public void restore() //Full restore
     {
         lp = lpMax;
         ep = epMax;

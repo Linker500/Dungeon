@@ -1,22 +1,28 @@
 package dungeon;
 
-public class Dungeon
+import java.util.Scanner;
+
+public class UI
 {
-   public static void main(String[] args)
+   Scanner in;
+
+   public UI()
    {
-      Party party1 = new Party();
-      party1.add(new Character());
-
-      Party party2 = new Party();
-      party2.add(new Character());
-
-      System.out.print(stringNPCs(party2));
-      System.out.println();
-      System.out.print(stringPCs(party1));
+      in = new Scanner(System.in);
+   }
+   
+   public void output(String string)
+   {
+      System.out.print(string);
+   }
+   
+   public String input()
+   {
+      System.out.print("\n>");
+      return in.nextLine();
    }
 
-   //TODO: idk where this goes maybe in a util class? is here for now though
-   public static String stringPCs(Party party)
+   public String stringPCs(Party party)
    {
       String[][] strings = new String[party.size()][3];
       
@@ -53,7 +59,7 @@ public class Dungeon
       //           |EP:10/10|
    }
 
-   public static String stringNPCs(Party party) //TODO: fix floating point precision?
+   public String stringNPCs(Party party) //TODO: fix floating point precision?
    {
       String[][] strings = new String[party.size()][2];
       
@@ -88,7 +94,7 @@ public class Dungeon
       return toReturn;
    }
 
-   public static String padString(String string, int size)
+   public String padString(String string, int size)
    {
       if(string.length() <size) //Padding string if too short
       {
