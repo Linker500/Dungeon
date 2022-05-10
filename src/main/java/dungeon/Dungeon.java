@@ -4,14 +4,22 @@ public class Dungeon
 {
    public static void main(String[] args)
    {
-      Party party1 = new Party();
-      party1.add(new Character());
+      System.out.print("ABC");
+      //System.out.print("[%s]\r");
+      System.out.print("DEFGH");
+      /*
+      Party pc = new Party();
+         pc.add(new Character("Martial",20,10));
+         pc.add(new Character("Ranger",15,15));
+         pc.add(new Character("Mystic",10,20));
 
-      Party party2 = new Party();
-      party2.add(new Character());
+      Party npc = new Party();
+         npc.add(new Character("Mouse",2,3));
+         npc.add(new Character("Rat",3,5));
+         npc.add(new Character("Mouse",2,3));
 
-      Combat combat = new Combat(party1, party2);
-      combat.start();
+      Combat combat = new Combat(pc, npc);
+      combat.start();*/
    }
 
    //TODO: idk where this goes maybe in a util class? is here for now though

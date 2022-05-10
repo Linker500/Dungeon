@@ -1,8 +1,10 @@
-/home/stuart/Dungeon/src/main/java/dungeon/PlayerCharacter.java
 /home/stuart/Dungeon/src/main/java/dungeon/Character.java
+/home/stuart/Dungeon/src/main/java/dungeon/Intelligence.java
 /home/stuart/Dungeon/src/main/java/dungeon/Dungeon.java
-/home/stuart/Dungeon/src/main/java/dungeon/User.java
-/home/stuart/Dungeon/src/main/java/dungeon/NonPlayerCharacter.java
+/home/stuart/Dungeon/src/main/java/dungeon/PCParty.java
 /home/stuart/Dungeon/src/main/java/dungeon/Combat.java
+/home/stuart/Dungeon/src/main/java/dungeon/UI.java
+/home/stuart/Dungeon/src/main/java/dungeon/Action.java
 /home/stuart/Dungeon/src/main/java/dungeon/Party.java
 /home/stuart/Dungeon/src/main/java/dungeon/Map.java
+/home/stuart/Dungeon/src/main/java/dungeon/IntAttack.java

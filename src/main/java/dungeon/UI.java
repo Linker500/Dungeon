@@ -12,7 +12,7 @@ public class UI
       in = new Scanner(System.in);
    }
 
-   public ArrayList<Action> combat(Party pc, Party npc, int round)
+   public ArrayList<Action> combat(Party pc, Party npc, int round) //TODO: this class is redundant and sphaghetti logic. plz fix
    {
       ArrayList<Action> actions = new ArrayList<Action>();
 
@@ -34,8 +34,9 @@ public class UI
             {
                Action action;
 
-               if(false)// if(npc.size() > 1) //TODO: finish target select
+               if(npc.size() > 1) //TODO: target select should be a function and not hardcoded for attack as skills will need it
                {
+                  int target = -1;
                   boolean loop2 = true;
                   while(loop2)
                   {
@@ -46,12 +47,25 @@ public class UI
                      for(int j=1; j<npc.size()+1; j++)
                         targets += j+"; ";
                      output("Attack which target?\n"+targets);
-                     option = input();
+                     try
+                     {
+                        target = inputInt();
+                        if(target > 0 && target < npc.size()+1)
+                           loop2 = false;
+                        else
+                        {
+                           output("Invalid input!");
+                           wait(1000);
+                        }
+                     }
+                     catch(Exception e)
+                     {
+                        output("Invalid input!");
+                        wait(1000);
+                     }
                   }
-                  
-                  int target = 1;
 
-                  action = new Action(pc.get(i), npc, target);
+                  action = new Action(pc.get(i), npc, target-1);
                   
                }
                else
@@ -63,20 +77,18 @@ public class UI
 
             else
             {
-               output("Invalid option.");
-               try
-               {
-                  Thread.sleep(3000);
-               }
-               catch (Exception e)
-               {
-                  System.out.println(e);
-               }
+               output("Invalid option!");
+               wait(1000);
             }
          }
       }
 
       return actions;
+   }
+   
+   public int selectTarget(Party party)
+   {
+      return 1;
    }
    
    public void output(String string)
@@ -90,9 +102,20 @@ public class UI
       return in.nextLine();
    }
 
+   public int inputInt()
+   {
+      System.out.print("\n>");
+      return in.nextInt();
+   }
+
    public void clear()
    {
       System.out.print("\033[H\033[2J");
+   }
+
+   public void temp() //Car return
+   {
+      System.out.print("[%s]\r")
    }
 
    //--------------------------------------------------------\\
@@ -101,11 +124,10 @@ public class UI
    {
       //TODO: both are set as "stringPCs" because the verbosity of the pc block is useful for testing
       return "Round " + round +"\n"+
+      stringPCs(npc)+"\n"+
       stringPCs(pc)+"\n"+
-      "|========|\n"+
-      stringPCs(pc)+
-      character.name + "'s turn"+
-      "Current status effects: NOT IMPLEMENTED";
+      character.name + "'s turn\n"+
+      "Current status effects: NOT IMPLEMENTED\n";
    }
 
    public String stringPCs(Party party)
@@ -201,5 +223,17 @@ public class UI
       }
 
       else return string; //String is exact length
+   }
+
+   public void wait(int mill)
+   {
+      try
+      {
+         Thread.sleep(mill);
+      }
+      catch (Exception e)
+      {
+         System.out.println(e);
+      }
    }
 }
