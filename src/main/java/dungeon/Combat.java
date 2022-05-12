@@ -7,6 +7,7 @@ public class Combat
     Party pc;
     Party npc;
     UI ui;
+    int round;
 
     public Combat(Party newPc, Party newNpc)
     {
@@ -18,26 +19,22 @@ public class Combat
     public void start()
     {
         boolean end = false;
-        for(int numb=1; !end; numb++)
-            end = round(numb);
+        for(round=1; !end; round++)
+            end = runRound(round);
     }
 
-    public boolean round(int numb)
+    public boolean runRound(int numb)
     {
-        ArrayList<Action> actions = ui.combat(pc, npc, numb);
+        ArrayList<Action> actions = ui.combatInput(this); //Quene PC Actions using player input for the entire party, ignoring specific character's ai.
 
-        //Quene PC Actions using player input for the entire party, ignoring specific character's ai.
-        
         for(int i=0; i<npc.size(); i++) //Quene NPC Actions using their included ai.
         {
             if(npc.get(i).lp >0) //Only give turns to living characters. Necromancy bad. //TODO: foreach loop
-            {
                 actions.add(npc.get(i).act(npc, pc));
-            }
         }
 
         for(Action i : actions)
-            ui.output(i.use());
+            ui.combatLog(this, i.use());
 
         //If either party is defeated, or if flee, return true;
 

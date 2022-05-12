@@ -4,10 +4,8 @@ public class Dungeon
 {
    public static void main(String[] args)
    {
-      System.out.print("ABC");
-      //System.out.print("[%s]\r");
-      System.out.print("DEFGH");
-      /*
+      //sandbox();
+      
       Party pc = new Party();
          pc.add(new Character("Martial",20,10));
          pc.add(new Character("Ranger",15,15));
@@ -19,7 +17,18 @@ public class Dungeon
          npc.add(new Character("Mouse",2,3));
 
       Combat combat = new Combat(pc, npc);
-      combat.start();*/
+      combat.start();
+   }
+
+   public static void sandbox() //Trash testing function
+   {
+      System.out.println("1");
+      System.out.println("2");
+      System.out.println("3");
+      System.out.print("\033[2A\033[0J");
+      System.out.println("4");
+      System.out.println("5");
+      while(true){} //Just to not enter rest of code 
    }
 
    //TODO: idk where this goes maybe in a util class? is here for now though
@@ -83,7 +92,6 @@ public class Dungeon
             strings[i][1] = "|"+padString((per.toString()+"%"),8)+"|";
          }
       }
-
       for(int j=0; j<2; j++)
       {
          for(int i=0; i<party.size(); i++)
@@ -114,7 +122,7 @@ public class Dungeon
       {
          return string.substring(0,size);
       }
-
-      else return string; //String is exact length
+      else
+         return string; //String is exact length
    }
 }

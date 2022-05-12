@@ -18,6 +18,6 @@ public class Action
     {
         user.drain(1);
         party.get(target).damage(5);
-        return "";
+        return user.name+" attacked "+party.get(target).name+" for 5 damage!";
     }
 }

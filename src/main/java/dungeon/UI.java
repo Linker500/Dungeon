@@ -12,8 +12,11 @@ public class UI
       in = new Scanner(System.in);
    }
 
-   public ArrayList<Action> combat(Party pc, Party npc, int round) //TODO: this class is redundant and sphaghetti logic. plz fix
+   public ArrayList<Action> combatInput(Combat combat)
    {
+      Party pc = combat.pc;
+      Party npc = combat.npc;
+      int round = combat.round;
       ArrayList<Action> actions = new ArrayList<Action>();
 
       for(int i=0; i<pc.size(); i++) //TODO: foreach looppppp
@@ -22,10 +25,14 @@ public class UI
          if(pc.get(i).lp > 0)
             loop = true;
 
-         while(loop)
+         clear();
+         output(stringCombat(pc, npc, round));
+         output(pc.get(i).name + "'s turn\n"+"Current status effects: NOT IMPLEMENTED\n");
+         output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
+            
+         while(loop) //TODO unclean being here? idk
          {
-            clear();
-            output(stringCombat(pc.get(i), pc, npc, round));
+            clear(3);
             output("What would you like to do?\n(a)ttack; (s)kill; (d)efend; (f)lee; (c)ancel;");
 
             String option = input();
@@ -34,47 +41,11 @@ public class UI
             {
                Action action;
 
-               if(npc.size() > 1) //TODO: target select should be a function and not hardcoded for attack as skills will need it
-               {
-                  int target = -1;
-                  boolean loop2 = true;
-                  while(loop2)
-                  {
-                     clear();
-                     output(stringCombat(pc.get(i), pc, npc, round));
-                     
-                     String targets = "";
-                     for(int j=1; j<npc.size()+1; j++)
-                        targets += j+"; ";
-                     output("Attack which target?\n"+targets);
-                     try
-                     {
-                        target = inputInt();
-                        if(target > 0 && target < npc.size()+1)
-                           loop2 = false;
-                        else
-                        {
-                           output("Invalid input!");
-                           wait(1000);
-                        }
-                     }
-                     catch(Exception e)
-                     {
-                        output("Invalid input!");
-                        wait(1000);
-                     }
-                  }
-
-                  action = new Action(pc.get(i), npc, target-1);
-                  
-               }
-               else
-                  action = new Action(pc.get(i), npc, 0);
-
+               int target = selectTarget(npc); //Prompts player to select target from enemies
+               action = new Action(pc.get(i), npc, target);
                actions.add(action);
                loop = false;
             }
-
             else
             {
                output("Invalid option!");
@@ -86,9 +57,51 @@ public class UI
       return actions;
    }
    
+   public void combatLog(Combat combat, String caption)
+   {
+      clear();
+      output(stringCombat(combat.pc, combat.npc, combat.round)+caption);
+      wait(2000); //TODO: maybe make player hit enter after each message
+   }
+
    public int selectTarget(Party party)
    {
-      return 1;
+      int target = -1;
+      
+      if(party.size() > 1)
+      {
+         boolean loop = true;
+         while(loop)
+         {
+            clear(3);
+            
+            String targets = "";
+            for(int i=0; i<party.size(); i++)
+               targets += (i+1)+": "+party.get(i).name+"; ";
+            output("Target who?\n"+targets);
+            try
+            {
+               target = Integer.parseInt(input());
+               if(target > 0 && target < party.size()+1)
+                  loop = false;
+               else
+               {
+                  output("Invalid input!");
+                  wait(1000);
+               }
+            }
+            catch(Exception e)
+            {
+               output("Invalid input!");
+               wait(1000);
+            }
+         }
+
+         return target-1;
+         
+      }
+      else
+         return 0;
    }
    
    public void output(String string)
@@ -102,32 +115,24 @@ public class UI
       return in.nextLine();
    }
 
-   public int inputInt()
-   {
-      System.out.print("\n>");
-      return in.nextInt();
-   }
-
    public void clear()
    {
       System.out.print("\033[H\033[2J");
    }
 
-   public void temp() //Car return
+   public void clear(int lines)
    {
-      System.out.print("[%s]\r")
+      System.out.print("[%s]\r\033["+lines+"A\033[0J");
    }
 
    //--------------------------------------------------------\\
 
-   public String stringCombat(Character character, Party pc, Party npc, int round)
+   public String stringCombat(Party pc, Party npc, int round)
    {
       //TODO: both are set as "stringPCs" because the verbosity of the pc block is useful for testing
       return "Round " + round +"\n"+
       stringPCs(npc)+"\n"+
-      stringPCs(pc)+"\n"+
-      character.name + "'s turn\n"+
-      "Current status effects: NOT IMPLEMENTED\n";
+      stringPCs(pc)+"\n";
    }
 
    public String stringPCs(Party party)
