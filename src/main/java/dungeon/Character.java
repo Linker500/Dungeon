@@ -9,6 +9,11 @@ public class Character
     public int lp; //Current LifePoints
     public int ep; //Current EnergyPoints
 
+    public int str; //Strength (Physical attack and abilities)
+    public int foc; //Focus (Magical Attack and ability)
+    public int vit; //Vitality (Defense, HP, and defensive abilities)
+    public int agi; //Agility (Iniative)
+
     private Intelligence intelligence;
 
     public Character()

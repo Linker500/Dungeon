@@ -34,8 +34,10 @@ public class Combat
         }
 
         for(Action i : actions)
-            ui.combatLog(this, i.use());
-
+        {
+            if(i.user.lp > 0)
+                ui.combatLog(this, i.use());
+        }
         //If either party is defeated, or if flee, return true;
 
         return false;

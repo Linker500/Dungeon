@@ -179,7 +179,7 @@ public class UI
       //           |EP:10/10|
    }
 
-   public String stringNPCs(Party party) //TODO: fix floating point precision?
+   public String stringNPCs(Party party) //TODO: is there floating point precision errors
    {
       String[][] strings = new String[party.size()][2];
       
@@ -219,9 +219,14 @@ public class UI
       if(string.length() <size) //Padding string if too short
       {
          int padSize = (size - string.length());
-         String padding = " ";
-         
-         padding = padding.repeat(padSize/2);
+
+         String padding = "";
+         for (int i=0; i<padSize/2; i++)
+            padding += " ";
+
+         //TODO: this code with the .repeat method is nicer, but is not in old java installs. 
+         //String padding = " ";
+         //padding = padding.repeat(padSize/2);
          
          if(padSize % 2 == 0)
             return padding+string+padding;
