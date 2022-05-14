@@ -27,4 +27,16 @@ public class Party //TODO: implement iteratable?
         for(int i=0; i< size(); i++)
             get(i).restore();
     }
+
+    public boolean defeated()
+    {
+        boolean defeated = true; //Assume defeated until at least one party member is found alive.
+        for(Character i : members)
+        {
+            if(i.lp > 0)
+                defeated = false;
+        }
+
+        return defeated;
+    }
 }

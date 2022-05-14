@@ -66,7 +66,7 @@ public class UI
    {
       clear();
       output(stringCombat(combat.pc, combat.npc, combat.round));
-      wait(250);
+      wait(500);
       output(caption);
       wait(2000); //TODO: maybe make player hit enter after each message
    }

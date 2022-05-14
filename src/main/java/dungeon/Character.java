@@ -10,9 +10,9 @@ public class Character
     public int ep; //Current EnergyPoints
 
     public int str; //Strength (Physical attack and abilities)
-    public int foc; //Focus (Magical Attack and ability)
-    public int vit; //Vitality (Defense, HP, and defensive abilities)
-    public int agi; //Agility (Iniative)
+    public int foc; //Focus (Magical Attack and abilities)
+    public int agi; //Agility (Iniative and precision abilities)
+    public int vit; //Vitality (HP, and defensive abilities)
 
     private Intelligence intelligence;
 
