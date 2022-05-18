@@ -71,6 +71,11 @@ public class UI
       wait(2000); //TODO: maybe make player hit enter after each message
    }
 
+   public void printMap(Map map)
+   {
+      
+   }
+
    public int selectTarget(Party party)
    {
       int target = -1;
