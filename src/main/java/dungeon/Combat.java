@@ -1,19 +1,20 @@
-package dungeon;
+package dungeon; //TODO make combat package?
 
 import java.util.ArrayList;
 
-public class Combat
+public class Combat //Combat scenario. Two partyies fighting.
+                    //Most likely PC vs NPC, but NPC v NPC is possible too.
 {
+    UI ui;
     Party pc;
     Party npc;
-    UI ui;
     int round;
 
-    public Combat(Party newPc, Party newNpc)
+    public Combat(UI newUI, Party newPc, Party newNpc)
     {
         pc = newPc;
         npc = newNpc;
-        ui = new UI(); //TODO: don't just make this here, initialize it once for the entire game somewhere else
+        ui = newUI;
     }
 
     public void start() //TODO special logic for if PC party is defeated vs NPC party

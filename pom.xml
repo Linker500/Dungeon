@@ -22,7 +22,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>dungeon.Dungeon</mainClass>
+              <mainClass>dungeon.Game</mainClass>
             </manifest>
           </archive>
         </configuration>

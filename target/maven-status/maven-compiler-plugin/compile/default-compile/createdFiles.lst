@@ -1,5 +1,6 @@
 dungeon/Combat.class
 dungeon/Character.class
+dungeon/Tile.class
 dungeon/Action.class
 dungeon/Map.class
 dungeon/UI.class
@@ -7,4 +8,4 @@ dungeon/IntAttack.class
 dungeon/Intelligence.class
 dungeon/Dungeon.class
 dungeon/Party.class
-dungeon/PCParty.class
+dungeon/Game.class

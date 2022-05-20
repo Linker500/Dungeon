@@ -3,6 +3,9 @@ package dungeon;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+//TODO: Make UI package, and split Combat + Crawling stuff into their own class.
+//This is way too large and bloated.
+
 public class UI
 {
    Scanner in;
@@ -10,6 +13,15 @@ public class UI
    public UI()
    {
       in = new Scanner(System.in);
+   }
+
+   public void dungeonInput()
+   {
+      Map map = new Map();
+
+      printMap(map,2,3);
+
+      output("");
    }
 
    public ArrayList<Action> combatInput(Combat combat)
@@ -71,9 +83,39 @@ public class UI
       wait(2000); //TODO: maybe make player hit enter after each message
    }
 
-   public void printMap(Map map)
+   public void printMap(Map map, int x, int y)
    {
-      
+         //Because we can only print left to right top to bottom, a tile's string
+         //must be split into 3 lines to be printed when possible.
+         String[][] t = new String[9][3]; //[Tile][String #]
+
+         int tileNumb = 0;
+         for(int iY=-1; iY<=1; iY++)
+         {
+            for(int iX=-1; iX<=1; iX++)
+            {
+               String[] tile = map.get(x+iX,y+iY).art;
+               t[tileNumb][0] = tile[0];
+               t[tileNumb][1] = tile[1];
+               t[tileNumb][2] = tile[2];
+               tileNumb++;
+            }
+         }
+
+         output( "+---------+---------+---------+"+
+            "\n|"+t[0][0]+"|"+t[1][0]+"|"+t[2][0]+"|"+
+            "\n|"+t[0][1]+"|"+t[1][1]+"|"+t[2][1]+"|"+
+            "\n|"+t[0][2]+"|"+t[1][2]+"|"+t[2][2]+"|"+
+            "\n+---------+---------+---------+"+
+            "\n|"+t[3][0]+"|"+t[4][0]+"|"+t[5][0]+"|"+
+            "\n|"+t[3][1]+"|"+t[4][1]+"|"+t[5][1]+"|"+
+            "\n|"+t[3][2]+"|"+t[4][2]+"|"+t[5][2]+"|"+
+            "\n+---------+---------+---------+"+
+            "\n|"+t[6][0]+"|"+t[7][0]+"|"+t[8][0]+"|"+
+            "\n|"+t[6][1]+"|"+t[7][1]+"|"+t[8][1]+"|"+
+            "\n|"+t[6][2]+"|"+t[7][2]+"|"+t[8][2]+"|"+
+            "\n+---------+---------+---------+\n");
+
    }
 
    public int selectTarget(Party party)
@@ -142,7 +184,7 @@ public class UI
    public String stringCombat(Party pc, Party npc, int round)
    {
       //TODO: both are set as "stringPCs" because the verbosity of the pc block is useful for testing
-      return "Round " + round +"\n"+
+      return "Round " + round +"\n\n"+
       stringNPCs(npc)+"\n"+
       stringPCs(pc)+"\n";
    }
