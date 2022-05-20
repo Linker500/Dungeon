@@ -16,7 +16,7 @@ public class Game
         pc.add(new Character("Ranger",15,15));
         pc.add(new Character("Mystic",10,20));
 
-        Dungeon dungeon = new Dungeon(ui, pc);
+        Explore explore = new Explore(ui, pc);
     }
 
     public static void combatTest()

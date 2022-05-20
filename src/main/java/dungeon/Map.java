@@ -1,7 +1,5 @@
 package dungeon;
 
-import java.util.ArrayList;
-
 public class Map
 {
    Tile room = new Tile(". . . . ."," . . . . ",". . . . .",false);
