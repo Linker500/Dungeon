@@ -5,12 +5,15 @@ public class Game
     public static void main(String[] args)
     {
         //sandbox();
-        dungeonTest();
+        //dungeonTest();
+        combatTest();
     }
 
     public static void dungeonTest()
     {
         UI ui = new UI();
+        UICombat uiCombat = new UICombat(ui);
+
         Party pc = new Party();
         pc.add(new Character("Martial",20,10));
         pc.add(new Character("Ranger",15,15));

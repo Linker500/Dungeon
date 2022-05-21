@@ -1,11 +1,13 @@
 dungeon/Combat.class
+dungeon/Explore.class
+dungeon/UI.class
+dungeon/Party.class
+dungeon/UIExplore.class
+dungeon/Game.class
 dungeon/Character.class
 dungeon/Tile.class
 dungeon/Action.class
 dungeon/Map.class
-dungeon/UI.class
+dungeon/UICombat.class
 dungeon/IntAttack.class
 dungeon/Intelligence.class
-dungeon/Dungeon.class
-dungeon/Party.class
-dungeon/Game.class

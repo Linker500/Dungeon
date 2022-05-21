@@ -28,7 +28,7 @@ public class Combat //Combat scenario. Two partyies fighting.
     {
         boolean end = false;
 
-        ArrayList<Action> actions = ui.combatInput(this); //Quene PC Actions using player input for the entire party, ignoring specific character's ai.
+        ArrayList<Action> actions = ui.combat.combatInput(this); //Quene PC Actions using player input for the entire party, ignoring specific character's ai.
 
         for(int i=0; i<npc.size(); i++) //Quene NPC Actions using their included ai.
         {
@@ -39,7 +39,7 @@ public class Combat //Combat scenario. Two partyies fighting.
         for(Action i : actions)
         {
             if(i.user.lp > 0)
-                ui.combatLog(this, i.use());
+                ui.combat.combatLog(this, i.use()); //TODO; this and ui.combat.combatInput() dumb. Should just be ui.combat.log()?
             
             if(pc.defeated() || npc.defeated())
             {
