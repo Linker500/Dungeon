@@ -18,7 +18,12 @@ public class Party //TODO: implement iteratable?
     }
 
     //Methods
-    public void add(Character newMember) {members.add(newMember);}
+    public void add(Character newMember) //TODO: should party members know what party they are in? If not then "Action" needs to have the character's party.
+    {
+        members.add(newMember);
+        newMember.party = this;
+    }
+    
     public Character get(int number) {return members.get(number);}
     public int size() {return members.size();}
 

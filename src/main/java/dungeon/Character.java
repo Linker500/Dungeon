@@ -3,7 +3,8 @@ package dungeon;
 public class Character
 {
     public String name;
-    
+    public Party party;
+
     public int lpMax; //Max Lifepoints
     public int epMax; //Max EnergyPoints
     public int lp; //Current LifePoints
