@@ -2,10 +2,9 @@ package dungeon;
 
 public class Map
 {
-   Tile room = new Tile(". . . . ."," . . . . ",". . . . .",false);
-   Tile wall = new Tile("__|___|__","_|__|__|_","__|___|__",true);
+   Tile room = new Tile("\033[90m. . . . .\033[0m","\033[90m . . . . \033[0m","\033[90m. . . . .\033[0m",false);
+   Tile wall = new Tile("\033[90m──┴───┴──\033[0m","\033[90m─┴──┴──┴─\033[0m","\033[90m──┴───┴──\033[0m",true);
    Tile oobTile = wall;
-
 
    Tile r = room;
    Tile w = wall;

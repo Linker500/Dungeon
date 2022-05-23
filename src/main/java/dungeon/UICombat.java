@@ -25,7 +25,7 @@ public class UICombat
             loop = true;
 
             clear();
-            output(stringCombat(pc, npc, round));
+            output(stringCombat(pc, npc, round, i));
             output(pc.get(i).name + "'s turn\n"+"\u001B[90mCurrent status effects: NOT IMPLEMENTED\033[0m\n");
             output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
             
@@ -61,10 +61,17 @@ public class UICombat
         return actions;
     }
 
-    public void combatLog(Combat combat, String caption)
+    public void combatLog(Combat combat, String caption, Action action)
     {
         clear();
+        
+        //TODO: targeted character is always red. Change depending on what is done. If healed, blue, if cursed, purple, etc.
+        output("Round " + round +"\n\n")
+
         output(stringCombat(combat.pc, combat.npc, combat.round));
+        output(stringNPCs(npc))
+        putput(stringPCs(pc))
+        
         wait(500);
         output(caption);
         wait(2000); //TODO: maybe make player hit enter after each message
@@ -113,13 +120,17 @@ public class UICombat
 
     public String stringCombat(Party pc, Party npc, int round)
     {
-        //TODO: both are set as "stringPCs" because the verbosity of the pc block is useful for testing
-        return "Round " + round +"\n\n"+
-        stringNPCs(npc)+"\n"+
-        stringPCs(pc)+"\n";
+        return stringCombat(pc,npc,round,-1);
     }
 
-    public String stringPCs(Party party)
+    public String stringCombat(Party pc, Party npc, int round, int member) //TODO: this can't give fine enough control for all the details maybe get rid of this and just use split functions
+    {
+        return "Round " + round +"\n\n"+
+        stringNPCs(npc)+"\n"+
+        stringPCs(pc,member,"\033[0m",true)+"\n";
+    }
+
+    public String stringPCs(Party party, int member, String color, boolean bold) //TODO: perhaps make ansi color object to pass
     {
         String[][] strings = new String[party.size()][3];
 
@@ -128,9 +139,29 @@ public class UICombat
         for(int i=0; i<party.size(); i++)
         {
             Character c = party.get(i);
-            strings[i][0] = "\033[90m|\033[0m"+padString(c.name,8)+"\033[90m|\033[0m";
-            strings[i][1] = "\033[90m|\033[31m"+padString("LP:"+c.lp+"/"+c.lpMax,8)+"\033[90m|\033[0m";
-            strings[i][2] = "\033[90m|\033[36m"+padString("EP:"+c.ep+"/"+c.epMax,8)+"\033[90m|\033[0m";
+
+            if(i == member) //special coloring/bold for specific active party member
+            {
+                if(bold)
+                {
+                    strings[i][0] = color+"╔ \033[0m"+padString(c.name,8)+color+" ╗\033[0m";
+                    strings[i][1] = color+"║ \033[31m"+padString("LP:"+c.lp+"/"+c.lpMax,8)+color+" ║\033[0m";
+                    strings[i][2] = color+"╚ \033[36m"+padString("EP:"+c.ep+"/"+c.epMax,8)+color+" ╝\033[0m";
+                }
+                else
+                {
+                    strings[i][0] = color+"┌ \033[0m"+padString(c.name,8)+color+" ┐\033[0m";
+                    strings[i][1] = color+"│ \033[31m"+padString("LP:"+c.lp+"/"+c.lpMax,8)+color+" │\033[0m";
+                    strings[i][2] = color+"└ \033[36m"+padString("EP:"+c.ep+"/"+c.epMax,8)+color+" ┘\033[0m";
+                }
+            }
+            else //Everyone else
+            {
+                strings[i][0] = "\033[90m┌ \033[0m"+padString(c.name,8)+"\033[90m ┐\033[0m";
+                strings[i][1] = "\033[90m│ \033[31m"+padString("LP:"+c.lp+"/"+c.lpMax,8)+"\033[90m │\033[0m";
+                strings[i][2] = "\033[90m└ \033[36m"+padString("EP:"+c.ep+"/"+c.epMax,8)+"\033[90m ┘\033[0m";
+
+            }
         }
 
         for(int j=0; j<3; j++)
@@ -143,20 +174,25 @@ public class UICombat
 
         return toReturn;
 
-        // |Martial || Ranger || Mystic |
-        // |HP:20/20||HP:10/10||HP:15/15|
-        // |EP:10/10||EP:20/20||EP:15/15|
+        // ┌ Martial  ┐┌  Ranger  ┐┌  Mystic  ┐
+        // │ HP:20/20 ││ HP:10/10 ││ HP:15/15 │
+        // └ EP:10/10 ┘└ EP:20/20 ┘└ EP:15/15 ┘
 
-        //      |Martial || Ranger |
-        //      |HP:20/20||HP:10/10|
-        //      |EP:10/10||EP:20/20|
+        //       ┌ Martial  ┐┌  Ranger  ┐
+        //       │ HP:20/20 ││ HP:10/10 │
+        //       └ EP:10/10 ┘└ EP:20/20 ┘
 
-        //           |Martial |
-        //           |HP:20/20|
-        //           |EP:10/10|
+        //             ┌ Martial  ┐
+        //             │ HP:20/20 │
+        //             └ EP:10/10 ┘
     }
 
-    public String stringNPCs(Party party) //TODO: is there floating point precision errors
+    public String stringPCs(Party party)
+    {
+        return stringPCs(party, -1, null, false);
+    }
+
+    public String stringNPCs(Party party, int member, String color, boolean bold) //TODO: is there floating point precision errors
     {
         String[][] strings = new String[party.size()][2];
         
@@ -165,18 +201,37 @@ public class UICombat
         for(int i=0; i<party.size(); i++)
         {
             Character c = party.get(i);
-            strings[i][0] = "\033[90m|\033[0m"+padString(c.name,8)+"\033[90m|\033[0m";
+            String hp;
 
             if(c.lp == c.lpMax && false) //If Full
-            strings[i][1] = "\033[90m|\033[31m  FULL  \033[90m|\033[0m";  //TODO: idk if this is good or not. Maybe just show 100% instead?
+                hp = "  FULL  ";  //TODO: disabled right now idk if this is good or not. Maybe just show 100% instead?
 
             else if(c.lp == 0) //If Dead
-            strings[i][1] = "\033[90m|  DEAD  |\033[0m";
+                hp = "  DEAD  ";
 
             else //HP left
             {
-            Integer per = Math.round((float)c.lp / (float)c.lpMax * 100);
-            strings[i][1] = "\033[90m|\033[31m"+padString((per.toString()+"%"),8)+"\033[90m|\033[0m";
+                Integer per = Math.round((float)c.lp / (float)c.lpMax * 100);
+                hp = per.toString()+"%";
+            }
+
+            if(i == member) //special coloring/bold for specific active party member
+            {
+                if(bold)
+                {
+                    strings[i][0] = color+"╔ \033[0m"+padString(c.name,8)+color+" ╗\033[0m";
+                    strings[i][1] = color+"╚ \033[31m"+padString(hp,8)+color+" ╝\033[0m";
+                }
+                else
+                {
+                    strings[i][0] = color+"┌ \033[0m"+padString(c.name,8)+color+" ┐\033[0m";
+                    strings[i][1] = color+"└ \033[31m"+padString(hp,8)+color+" ┘\033[0m";
+                }
+            }
+            else //Everyone else
+            {
+                strings[i][0] = "\033[90m┌ \033[0m"+padString(c.name,8)+"\033[90m ┐\033[0m";
+                strings[i][1] = "\033[90m└ \033[31m"+padString(hp,8)+"\033[90m ┘\033[0m";
             }
         }
 
@@ -189,6 +244,11 @@ public class UICombat
         }
 
         return toReturn;
+    }
+
+    public String stringNPCs(Party party)
+    {
+        return stringNPCs(party, -1, null, false);
     }
 
     public String padString(String string, int size)
