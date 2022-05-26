@@ -9,46 +9,63 @@ public class UIExplore
         ui = newUI;
     }
 
-    public void exploreInput(Explore explore)
+    public void exploreInput(Explore e)
     {
         boolean loop = true;
-
-        clear();
-        output(stringMap(explore.map, explore.x,explore.y));
-        output("");
-        output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
         
         while(loop) //TODO unclean being here? idk
         {
-            clear(3);
+            clear();
+            output(stringMap(e.map, e.x,e.y));
+            output("");
+            output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
             output("What would you like to do?\n"+
-            "\033[0m(g)\033[90mo; "+
-            "\033[0m(s)\033[90mkill; "+
-            "\033[0m(m)\033[90menu;\u001B[0m");
-
-
+            "\033[0m(n)\033[90morth; " +
+            "\033[0m(e)\033[90mast; " +
+            "\033[0m(s)\033[90mouth; " +
+            "\033[0m(w)\033[90mest; " +
+            "\033[0m(m)\033[90menu;\u001B[0m"); //Submenus for Inventory, Skills, etc.
             String option = input();
             option.toLowerCase();
-            if(option.equals("g"))
+            int dY = 0;
+            int dX = 0;
+
+            switch(option)
             {
+                case "n":
+                    dY = -1;
+                    break;
+
+                case "e":
+                    dX = 1;
+                    break;
+
+                case "s":
+                    dY = 1;
+                    break;
+
+                case "w":
+                    dX = -1;
+                    break;
                 
-                boolean loop2 = true;
+                case "m":
+                    break;
 
-                while(loop2)
-                {
-                    output("Go in which direction?");
-                    output("\033[0m(n)\033[90morth; " +
-                    "\033[0m(e)\033[90mast; " +
-                    "\033[0m(s)\033[90mouth; " +
-                    "\033[0m(w)\033[90mest;\u001B[0m");
+                default:
+                    output("Invalid option!");
+                    wait(250);
+                    break;
+            }
 
-                    option = input();
-                }
+            if(e.map.get(e.x+dX,e.y+dY).isWall)
+            {
+                output("Pathway blocked!");
+                wait(500);
             }
             else
             {
-                output("Invalid option!");
-                wait(1000);
+                e.x += dX;
+                e.y += dY;
             }
         }
     }

@@ -66,15 +66,8 @@ public class UICombat
         clear();
         
         //TODO: targeted character is always red. Change depending on what is done. If healed, blue, if cursed, purple, etc.
-        output("Round " + combat.round +"\n\n");
-
         output(stringCombat(combat.pc, combat.npc, combat.round));
 
-        //TODO: idfk if this logic sucks or not it feels awful having to calculate what party the action is coming from after tossing that info away
-
-        output(stringNPCs(combat.npc,));
-        output(stringPCs(combat.pc));
-        
         wait(500);
         output(caption);
         wait(2000); //TODO: maybe make player hit enter after each message
@@ -170,7 +163,7 @@ public class UICombat
         for(int j=0; j<3; j++)
         {
             for(int i=0; i<party.size(); i++)
-            toReturn += strings[i][j];
+                toReturn += strings[i][j];
 
             toReturn += "\n";
         }
