@@ -1,23 +1,24 @@
 package dungeon;
 
-public class Action
+public abstract class Action
 {
-    Character user; //Person using said action
-    Party party; //Party that is being target. Usually opponent party, but can be allied one as well.
-    int target; //Which member of party to affect
+    public Character user; //Person using said action
+    public Party party; //Party that is being target. Usually opponent party, but can be allied one as well.
+    public int target; //Which member of party to affect
+    public int epCost; //Energy point cost to use action
 
-
-    public Action(Character nUser, Party nParty, int nTarget)
+    public String use()
     {
-        user = nUser;
-        party = nParty;
-        target = nTarget;
-    }
+        if(user.useEP(epCost)) //Only use ability if have proper EP
+            return act();
+            
+        return user.name+" does not have enough EP!";
+    } 
 
-    public String use() //TODO: this class needs to be interface or abstract for other actions (attack, defend, skills, etc, this is hardcoded to attack for testing though)
-    {
-        user.drain(1);
-        party.get(target).damage(5);
-        return user.name+" attacked "+party.get(target).name+" for 5 damage!";
-    }
+    public abstract String act(); //Method with unique logic to execute action
+
+    //Standard data return
+    public Character getUser() { return user; }
+    public Party getParty() { return party; }
+    public int getTarget() { return target; }
 }

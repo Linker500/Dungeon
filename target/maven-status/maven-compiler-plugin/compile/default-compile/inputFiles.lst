@@ -1,4 +1,5 @@
 /home/stuart/Dungeon/src/main/java/dungeon/Character.java
+/home/stuart/Dungeon/src/main/java/dungeon/intelligences/IntelligenceTemplate.java
 /home/stuart/Dungeon/src/main/java/dungeon/Tile.java
 /home/stuart/Dungeon/src/main/java/dungeon/Intelligence.java
 /home/stuart/Dungeon/src/main/java/dungeon/Explore.java
@@ -6,8 +7,11 @@
 /home/stuart/Dungeon/src/main/java/dungeon/UI.java
 /home/stuart/Dungeon/src/main/java/dungeon/Game.java
 /home/stuart/Dungeon/src/main/java/dungeon/Action.java
+/home/stuart/Dungeon/src/main/java/dungeon/actions/Defend.java
 /home/stuart/Dungeon/src/main/java/dungeon/Map.java
-/home/stuart/Dungeon/src/main/java/dungeon/IntAttack.java
+/home/stuart/Dungeon/src/main/java/dungeon/actions/ActionTemplate.java
 /home/stuart/Dungeon/src/main/java/dungeon/UIExplore.java
 /home/stuart/Dungeon/src/main/java/dungeon/UICombat.java
+/home/stuart/Dungeon/src/main/java/dungeon/intelligences/AttackSpam.java
+/home/stuart/Dungeon/src/main/java/dungeon/actions/Attack.java
 /home/stuart/Dungeon/src/main/java/dungeon/Party.java

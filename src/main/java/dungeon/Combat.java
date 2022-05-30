@@ -38,7 +38,7 @@ public class Combat //Combat scenario. Two partyies fighting.
 
         for(Action i : actions)
         {
-            if(i.user.lp > 0)
+            if(i.getUser().lp > 0)
                 ui.combat.combatLog(this, i.use(), i); //TODO; this and ui.combat.combatInput() dumb. Should just be ui.combat.log()?
             
             if(pc.defeated() || npc.defeated())
@@ -47,6 +47,12 @@ public class Combat //Combat scenario. Two partyies fighting.
                 break;
             }
         }
+
+        for(int i=0; i<pc.size(); i++) //TODO: foreach loop
+            pc.get(i).endTurn();
+
+        for(int i=0; i<npc.size(); i++)
+            npc.get(i).endTurn();
 
         return end;
     }

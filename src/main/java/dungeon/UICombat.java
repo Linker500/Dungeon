@@ -1,6 +1,7 @@
 package dungeon;
 
 import java.util.ArrayList;
+import dungeon.actions.*; //TODO: this shouldn't be here when skills are properly implemented
 
 public class UICombat
 {
@@ -21,12 +22,14 @@ public class UICombat
         for(int i=0; i<pc.size(); i++) //TODO: foreach looppppp
         {
             boolean loop = false;
-            if(pc.get(i).lp > 0)
-            loop = true;
+            Character user = pc.get(i);
+
+            if(user.lp > 0)
+                loop = true;
 
             clear();
             output(stringCombat(pc, npc, round, i));
-            output(pc.get(i).name + "'s turn\n"+"\u001B[90mCurrent status effects: NOT IMPLEMENTED\033[0m\n");
+            output(user.name + "'s turn\n"+"\u001B[90mCurrent status effects: NOT IMPLEMENTED\033[0m\n");
             output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
             
             while(loop) //TODO unclean being here? idk
@@ -34,26 +37,63 @@ public class UICombat
                 clear(3);
                 output("What would you like to do?\n"+
                 "\033[0m(a)\033[90mttack; "+
-                "\033[0m(s)\033[90mkill; "+
+                "\033[0m(s)\033[90mupport; "+
                 "\033[0m(d)\033[90mefend; "+ 
                 "\033[0m(f)\033[90mlee; "+
                 "\033[0m(c)\033[90mancel;\u001B[0m");
 
                 String option = input();
                 option.toLowerCase();
-                if(option.equals("a"))
-                {
-                    Action action;
 
-                    int target = selectTarget(npc); //Prompts player to select target from enemies
-                    action = new Action(pc.get(i), npc, target);
-                    actions.add(action);
-                    loop = false;
-                }
-                else
+                switch(option)
                 {
-                    output("Invalid option!");
-                    wait(1000);
+                    case("a"):
+                    {
+                        int target = selectTarget(npc); //Prompts player to select target from enemies
+                        
+                        if(target == -1) //If targeting was cancelled
+                            break;
+                        
+                        Action action = new Attack(user, npc, target);
+                        actions.add(action);
+                        loop = false;
+                        break;
+                    }
+
+                    case("d"):
+                    {
+                        Action action = new Defend(user, null, -1);
+                        actions.add(action);
+                        loop = false;
+                        break;
+                    }
+
+                    case("f"):
+                    {
+                        output("You cannot flee!");
+                        wait(1000);
+                        break;
+                    }
+
+                    case("c"):
+                    {
+                        if(i == 0)
+                            i = -1;
+                        else
+                        {
+                            if(actions.size() != 0)
+                                actions.remove(actions.size()-1);
+                            i-=2;
+                        }
+                        loop = false;
+                        break;
+                    }
+
+                    default:
+                    {
+                        output("Invalid option!");
+                        wait(1000);
+                    }
                 }
             }
         }
@@ -87,10 +127,13 @@ public class UICombat
                 String targets = "";
                 for(int i=0; i<party.size(); i++)
                     targets += (i+1)+": \033[90m"+party.get(i).name+";\033[0m ";
-                output("Target who?\n"+targets);
+                output("Target who?\n"+targets+"\033[0m(c)\033[90mancel;\033[0m");
+                String input = input();
+                input.toLowerCase();
+
                 try
                 {
-                    target = Integer.parseInt(input());
+                    target = Integer.parseInt(input);
                     if(target > 0 && target < party.size()+1)
                         loop = false;
                     else
@@ -102,6 +145,9 @@ public class UICombat
 
                 catch(Exception e)
                 {
+                    if(input.equals("c"))
+                        return -1;
+                    
                     output("Invalid input!");
                     wait(1000);
                 }

@@ -5,8 +5,9 @@ public class Game
     public static void main(String[] args)
     {
         //sandbox();
-        exploreTest();
-        //combatTest();
+        
+        //exploreTest();
+        combatTest();
         //uiExperiment();
 
         System.out.println("\033[0m\n"); //Change text back to white and linebreak on program end
@@ -32,7 +33,7 @@ public class Game
         UI ui = new UI();
         
         Party pc = new Party();
-        pc.add(new Character("Martial",20,10));
+        pc.add(new Character("Martial",0,0));
         pc.add(new Character("Ranger",15,15));
         pc.add(new Character("Mystic",10,20));
         
