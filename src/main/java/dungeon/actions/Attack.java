@@ -12,12 +12,12 @@ public class Attack extends Action
         user = nUser;
         party = nParty;
         target = nTarget;
-        epCost = 1; //TODO: this should be free when done with testing
+        epCost = 0; //TODO: this should be free when done with testing
     }
 
     public String act()
     {
-        party.get(target).damage(5);
-        return user.name+" attacked "+party.get(target).name+" for 5 damage!";
+        party.get(target).damage(user.str);
+        return user.name+" attacked "+party.get(target).name+" for "+user.str+" damage!";
     }
 }

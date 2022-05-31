@@ -1,5 +1,5 @@
-dungeon/Combat.class
 dungeon/intelligences/AttackSpam.class
+dungeon/Combat.class
 dungeon/actions/ActionTemplate.class
 dungeon/intelligences/IntelligenceTemplate.class
 dungeon/actions/Defend.class
@@ -9,9 +9,9 @@ dungeon/Party.class
 dungeon/UIExplore.class
 dungeon/Game.class
 dungeon/Character.class
-dungeon/Tile.class
 dungeon/Action.class
-dungeon/Map.class
+dungeon/Tile.class
 dungeon/UICombat.class
+dungeon/Map.class
 dungeon/Intelligence.class
 dungeon/actions/Attack.class

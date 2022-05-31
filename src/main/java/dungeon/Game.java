@@ -1,5 +1,7 @@
 package dungeon;
 
+import dungeon.characters.*; //TODO Temporary
+
 public class Game
 {
     public static void main(String[] args)
@@ -19,9 +21,9 @@ public class Game
         UICombat uiCombat = new UICombat(ui);
 
         Party pc = new Party();
-        pc.add(new Character("Martial",20,10));
-        pc.add(new Character("Ranger",15,15));
-        pc.add(new Character("Mystic",10,20));
+        pc.add(new Martial());
+        pc.add(new Ranger());
+        pc.add(new Mystic());
 
         Explore explore = new Explore(ui, pc);
 
@@ -33,10 +35,10 @@ public class Game
         UI ui = new UI();
         
         Party pc = new Party();
-        pc.add(new Character("Martial",0,0));
-        pc.add(new Character("Ranger",15,15));
-        pc.add(new Character("Mystic",10,20));
-        
+        pc.add(new Martial());
+        pc.add(new Ranger());
+        pc.add(new Mystic());     
+
         Party npc = new Party();
         npc.add(new Character("Mouse",2,3));
         npc.add(new Character("Rat",3,5));

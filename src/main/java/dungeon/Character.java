@@ -11,34 +11,50 @@ public class Character
     public int lp; //Current LifePoints
     public int ep; //Current EnergyPoints
 
-    public int str; //Strength (Physical attack and abilities)
-    public int foc; //Focus (Magical Attack and abilities)
+    public int str; //Strength (Attack power and physical abilities)
     public int agi; //Agility (Iniative and precision abilities)
-    public int vit; //Vitality (HP, and defensive abilities)
+    public int foc; //Focus (EP and magical abilities)
+    public int vit; //Vitality (LP, and defensive abilities)
 
     public boolean guard; //If character is guarding. Static halving of all damage taken post damage reduction
 
-    private Intelligence intelligence;
+    public Intelligence intelligence;
 
     public Character()
     {
         intelligence = new AttackSpam();
 
-        name = "Name";
-        lpMax = 10;
-        epMax = 10;
-        restore();
-        guard = false;
+        str = 1;
+        agi = 1;
+        foc = 1;
+        vit = 1;
+
+        init();
     }
 
     public Character(String newName, int newLpMax, int newEpMax)
     {
         intelligence = new AttackSpam();
 
+        str = 1;
+        agi = 1;
+        foc = 1;
+        vit = 1;
+
         name = newName;
         lpMax = newLpMax;
         epMax = newEpMax;
+        
+        init();
+    }
+
+    public void init()
+    {
+        lpMax = vit * 5;
+        epMax = foc * 5;
+
         restore();
+        guard = false;
     }
 
     public Action act(Party party, Party foes)
