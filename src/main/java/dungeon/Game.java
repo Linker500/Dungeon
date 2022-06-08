@@ -8,8 +8,8 @@ public class Game
     {
         //sandbox();
         
-        //exploreTest();
-        combatTest();
+        exploreTest();
+        //combatTest();
         //uiExperiment();
 
         System.out.println("\033[0m\n"); //Change text back to white and linebreak on program end

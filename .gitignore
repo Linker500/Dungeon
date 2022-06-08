@@ -1,3 +1,6 @@
+#maven stuff
+*.lst
+
 # Compiled class file
 *.class
 

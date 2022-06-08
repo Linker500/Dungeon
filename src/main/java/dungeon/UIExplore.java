@@ -3,22 +3,27 @@ package dungeon;
 public class UIExplore
 {
     UI ui;
+    Explore e;
 
     public UIExplore(UI newUI)
     {
         ui = newUI;
     }
 
-    public void exploreInput(Explore e)
+    public void init(Explore newE)
+    {
+        e = newE;
+    }
+
+    public void exploreInput()
     {
         boolean loop = true;
         
         while(loop) //TODO unclean being here? idk
         {
             clear();
-            output(stringMap(e.map, e.x,e.y));
-            output("");
-            output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
+            printInfo();
+            output("\u001B[90mThreat level: " + e.threat +"\u001B[0m\n");
             output("What would you like to do?\n"+
             "\033[0m(n)\033[90morth; " +
             "\033[0m(e)\033[90mast; " +
@@ -66,8 +71,22 @@ public class UIExplore
             {
                 e.x += dX;
                 e.y += dY;
+                loop = false;
             }
         }
+    }
+
+    public void message(String string)
+    {
+        clear();
+        printInfo();
+        output("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
+        input();
+    }
+
+    private void printInfo()
+    {
+        output(stringMap(e.map, e.x, e.y)+"\n");
     }
 
     private String stringMap(Map map, int x, int y)
