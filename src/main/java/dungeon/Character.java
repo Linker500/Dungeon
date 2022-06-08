@@ -94,7 +94,7 @@ public class Character
             ep = epMax;
     }
 
-    public void drain(int drained)
+    public void drain(int drained) //Lose ep
     {
         ep -= drained;
 
@@ -102,7 +102,8 @@ public class Character
             ep = 0;
     }
 
-    //Attempts to drain Energy Points, and returns true if successful 
+    //Attempts to drain Energy Points, and returns true if successful
+    //Meant for ability usage
     public boolean useEP(int drained)
     {
         if(ep < drained)

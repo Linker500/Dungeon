@@ -16,6 +16,13 @@ public class UI
       combat = new UICombat(this);
    }
    
+   public void message(String string)
+   {
+      clear();
+      output("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
+      input();
+   }
+
    public void output(String string)
    {
       System.out.print(string);

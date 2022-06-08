@@ -1,5 +1,6 @@
 package dungeon;
 
+import java.util.Scanner; //TODO: remove
 import dungeon.characters.*; //TODO Temporary
 
 public class Game
@@ -62,7 +63,8 @@ public class Game
 
     public static void sandbox() //Trash testing function
     {
-
+        Scanner i = new Scanner(System.in);
+        System.out.println(i.next().charAt(0));
 
 
     //**************************************************************//

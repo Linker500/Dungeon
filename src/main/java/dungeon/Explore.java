@@ -17,9 +17,7 @@ public class Explore //Dungeon scenario, with PCs exploring dungeon
    int y;
    //int threat = 0; //TODO: make this an enum
    Threat threat = Threat.None;
-   double encRate = 0.25; //TODO: move to map object
-
-   
+   double encRate = 0.50; //TODO: move to map object
 
    public Explore(UI newUI, Party newPC)
    {
@@ -42,18 +40,23 @@ public class Explore //Dungeon scenario, with PCs exploring dungeon
    public void start()
    {
       ui.explore.init(this);
+      boolean loop = true;
 
-      while(true)
-      {
-         round();
-      }
+      while(loop)
+         loop = round();
+      
+      ui.message("Game over.");
    }
 
    private boolean round()
    {
       ui.explore.exploreInput();
       raiseEncLevel();
-      return false;
+
+      if(pc.defeated()) //If party dies either in combat or out of it
+         return false;
+      
+      return true;
    }
 
    private void raiseEncLevel()

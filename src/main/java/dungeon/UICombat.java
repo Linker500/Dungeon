@@ -6,17 +6,23 @@ import dungeon.actions.*; //TODO: this shouldn't be here when skills are properl
 public class UICombat
 {
     UI ui;
+    Combat c;
 
     public UICombat(UI newUI)
     {
         ui = newUI;
     }
 
-    public ArrayList<Action> combatInput(Combat combat)
+    public void init(Combat newC)
     {
-        Party pc = combat.pc;
-        Party npc = combat.npc;
-        int round = combat.round;
+        c = newC;
+    }
+
+    public ArrayList<Action> combatInput()
+    {
+        Party pc = c.pc;
+        Party npc = c.npc;
+        int round = c.round;
         ArrayList<Action> actions = new ArrayList<Action>();
 
         for(int i=0; i<pc.size(); i++) //TODO: foreach looppppp
@@ -101,14 +107,24 @@ public class UICombat
         return actions;
     }
 
-    public void combatLog(Combat combat, String caption, Action action)
+    public void message(String string)
     {
         clear();
-        
-        //TODO: targeted character is always red. Change depending on what is done. If healed, blue, if cursed, purple, etc.
-        output(stringCombat(combat.pc, combat.npc, combat.round));
+        printInfo();
+        output("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
+        input();
+    }
 
-        wait(500);
+    private void printInfo()
+    {
+        output(stringCombat(c.pc, c.npc, c.round));
+    }
+
+    public void combatLog(String caption, Action action)
+    {
+        clear();  
+        //TODO: targeted character is always red. Change depending on what is done. If healed, blue, if cursed, purple, etc.
+        printInfo();
         output(caption);
         wait(2000); //TODO: maybe make player hit enter after each message
     }
