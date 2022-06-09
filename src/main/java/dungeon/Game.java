@@ -10,8 +10,8 @@ public class Game
     {
         //sandbox();
         
-        exploreTest();
-        //combatTest();
+        //exploreTest();
+        combatTest();
         //uiExperiment();
 
         System.out.println("\033[0m\n"); //Change text back to white and linebreak on program end
@@ -51,7 +51,7 @@ public class Game
         
         Party pc = new Party();
         pc.add(new Martial());
-        pc.add(new Ranger());
+        pc.add(new Guardian());
         pc.add(new Mystic());     
 
         Party npc = new Party();

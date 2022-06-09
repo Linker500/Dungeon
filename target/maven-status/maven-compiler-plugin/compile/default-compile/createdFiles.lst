@@ -11,6 +11,7 @@ dungeon/ui/UI$1.class
 dungeon/intelligences/AttackSpam.class
 dungeon/actions/ActionTemplate.class
 dungeon/intelligences/IntelligenceTemplate.class
+dungeon/characters/Guardian.class
 dungeon/ui/UICombat.class
 dungeon/ui/UIExplore.class
 dungeon/characters/CharacterTemplate.class
