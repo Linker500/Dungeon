@@ -7,6 +7,7 @@ dungeon/Game.class
 dungeon/Character.class
 dungeon/Tile.class
 dungeon/Action.class
+dungeon/ui/UI$1.class
 dungeon/intelligences/AttackSpam.class
 dungeon/actions/ActionTemplate.class
 dungeon/intelligences/IntelligenceTemplate.class

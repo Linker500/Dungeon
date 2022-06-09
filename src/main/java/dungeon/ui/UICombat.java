@@ -40,19 +40,20 @@ public class UICombat
                 loop = true;
 
             clear();
-            output(stringCombat(pc, npc, round, i));
-            output(user.name + "'s turn\n"+"\u001B[90mCurrent status effects: NOT IMPLEMENTED\033[0m\n");
-            output("\n\n\n"); //todo is there a more elegant logic to this? who knows.
+            outputRaw(stringCombat(pc, npc, round, i));
+            output(user.name + "'s turn\n");
+            output("Current status effects: NOT IMPLEMENTED\n", Color.L_BLACK);
+            output("\n\n"); //todo is there a more elegant logic to this? who knows.
             
             while(loop) //TODO unclean being here? idk
             {
                 clear(3);
-                output("What would you like to do?\n"+
-                "\033[0m(a)\033[90mttack; "+
-                "\033[0m(s)\033[90mupport; "+
-                "\033[0m(d)\033[90mefend; "+ 
-                "\033[0m(f)\033[90mlee; "+
-                "\033[0m(c)\033[90mancel;\u001B[0m");
+                output("What would you like to do?\n");
+                output("(a)"); output("ttack; ", Color.L_BLACK);
+                output("(s)"); output("upport; ", Color.L_BLACK);
+                output("(d)"); output("efend; ", Color.L_BLACK);
+                output("(f)"); output("lee; ", Color.L_BLACK);
+                output("(c)"); output("ancel;\n", Color.L_BLACK);
 
                 String option = input();
                 option.toLowerCase();
@@ -117,13 +118,14 @@ public class UICombat
     {
         clear();
         printInfo();
-        output("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
+        output(string+"\n", Color.L_BLACK);
+        output("Press Enter to continue...");
         input();
     }
 
     private void printInfo()
     {
-        output(stringCombat(c.pc, c.npc, c.round));
+        outputRaw(stringCombat(c.pc, c.npc, c.round));
     }
 
     public void combatLog(String caption, Action action)
@@ -149,7 +151,7 @@ public class UICombat
                 String targets = "";
                 for(int i=0; i<party.size(); i++)
                     targets += (i+1)+": \033[90m"+party.get(i).name+";\033[0m ";
-                output("Target who?\n"+targets+"\033[0m(c)\033[90mancel;\033[0m");
+                outputRaw("Target who?\n"+targets+"\033[0m(c)\033[90mancel;\033[0m");
                 String input = input();
                 input.toLowerCase();
 
@@ -346,6 +348,12 @@ public class UICombat
     //TODO: is this a hack or is it good
     private String input() {return ui.input();}
     private void output(String string) {ui.output(string);}
+    private void output(String string, Color color) {ui.output(string, color);}
+    private void output(String string, Modifier modifier) {ui.output(string, modifier);}
+    private void output(String string, Color color, Modifier modifier) {ui.output(string, color, modifier);}
+    private void outputRaw(String string) {ui.outputRaw(string);}
+    private void setCol(Color color) {ui.setCol(color);}
+    private void setMod(Modifier modifier) {ui.setMod(modifier);}
     private void wait(int i) {ui.wait(i);}
     private void clear() {ui.clear();}
     private void clear(int i) {ui.clear(i);}

@@ -17,6 +17,19 @@ public class Game
         System.out.println("\033[0m\n"); //Change text back to white and linebreak on program end
     }
 
+    public static void sandbox() //Trash testing function
+    {
+        UI ui = new UI();
+        
+        ui.output("Boring Output");
+        System.out.println("\nBoring Println");
+        ui.reset();
+        ui.output("Boring Reset");
+
+    //**************************************************************//
+        while(true){} //Just to not enter rest of code 
+    }
+
     public static void exploreTest()
     {
         UI ui = new UI();
@@ -60,16 +73,5 @@ public class Game
         "\033[0m║ \033[31mHP:20/20 \033[0m║\033[90m│ \033[31mHP:10/10 \033[90m││ \033[31mHP:15/15 \033[90m│\n"+
         "\033[0m╚ \033[36mEP:10/10 \033[0m╝\033[90m└ \033[36mEP:20/20 \033[90m┘└ \033[36mEP:15/15 \033[90m┘\n"
         );
-    }
-
-    public static void sandbox() //Trash testing function
-    {
-        System.out.println("White");
-        //System.out.println("\033[0;97mHI White");
-        System.out.println("\033[1;37mBold White");
-        //System.out.println("\033[1;97mBold HI White");
-
-    //**************************************************************//
-        while(true){} //Just to not enter rest of code 
     }
 }

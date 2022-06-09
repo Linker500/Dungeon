@@ -11,12 +11,12 @@ public enum Color
     CYAN,
     WHITE,
 
-    HI_BLACK,
-    HI_RED,
-    HI_GREEN,
-    HI_YELLOW,
-    HI_BLUE,
-    HI_PURPLE,
-    HI_CYAN,
-    HI_WHITE
+    L_BLACK,
+    L_RED,
+    L_GREEN,
+    L_YELLOW,
+    L_BLUE,
+    L_PURPLE,
+    L_CYAN,
+    L_WHITE
 }

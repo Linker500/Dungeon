@@ -27,13 +27,14 @@ public class UIExplore
         {
             clear();
             printInfo();
-            output("\u001B[90mThreat level: " + e.threat +"\u001B[0m\n");
-            output("What would you like to do?\n"+
-            "\033[0m(n)\033[90morth; " +
-            "\033[0m(e)\033[90mast; " +
-            "\033[0m(s)\033[90mouth; " +
-            "\033[0m(w)\033[90mest; " +
-            "\033[0m(m)\033[90menu;\u001B[0m"); //Submenus for Inventory, Skills, etc.
+            output("Threat level: " + e.threat+"\n", Color.L_BLACK);
+            output("What would you like to do?\n");
+            output("(n)"); output("orth; ", Color.L_BLACK);
+            output("(e)"); output("ast; ", Color.L_BLACK);
+            output("(s)"); output("outh; ", Color.L_BLACK);
+            output("(w)"); output("est; ", Color.L_BLACK);
+            output("(m)"); output("enu;\n", Color.L_BLACK); //Submenus for Inventory, Skills, etc.
+
             String option = input();
             option.toLowerCase();
             int dY = 0;
@@ -84,13 +85,14 @@ public class UIExplore
     {
         clear();
         printInfo();
-        output("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
+        output(string+"\n", Color.L_BLACK);
+        output("Press Enter to continue...");
         input();
     }
 
     private void printInfo()
     {
-        output(stringMap(e.map, e.x, e.y)+"\n");
+        outputRaw(stringMap(e.map, e.x, e.y)+"\n");
     }
 
     private String stringMap(Map map, int x, int y)
@@ -135,6 +137,12 @@ public class UIExplore
     //TODO: is this a hack or is it good
     private String input() {return ui.input();}
     private void output(String string) {ui.output(string);}
+    private void output(String string, Color color) {ui.output(string, color);}
+    private void output(String string, Modifier modifier) {ui.output(string, modifier);}
+    private void output(String string, Color color, Modifier modifier) {ui.output(string, color, modifier);}
+    private void outputRaw(String string) {ui.outputRaw(string);}
+    private void setCol(Color color) {ui.setCol(color);}
+    private void setMod(Modifier modifier) {ui.setMod(modifier);}
     private void wait(int i) {ui.wait(i);}
     private void clear() {ui.clear();}
     private void clear(int i) {ui.clear(i);}

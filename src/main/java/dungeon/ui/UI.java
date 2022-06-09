@@ -5,54 +5,50 @@ import java.util.Scanner;
 
 public class UI
 {
-   //TODO backgrounds... idfk how
-
-   //Modifiers
-   private final String normal = "[0;"; //Normal
-   private final String bold = "[1;"; //Bold
-   private final String underline = "[4;"; //Underline
-
-   //Colors
-   private final String BLA ="30m"; //Black
-   private final String RED ="31m"; //Red
-   private final String GRE ="32m"; //Green
-   private final String YEL ="33m"; //Yellow
-   private final String BLU ="34m"; //Blue
-   private final String PUR ="35m"; //Purple
-   private final String CYA ="36m"; //Cyan
-   private final String WHI ="37m"; //White
-
-   private final String L_BLA ="90m"; //Light Black
-   private final String L_RED ="91m"; //Light Red
-   private final String L_GRE ="92m"; //Light Green
-   private final String L_YEL ="93m"; //Light Yellow
-   private final String L_BLU ="94m"; //Light Blue
-   private final String L_PUR ="95m"; //Light Purple
-   private final String L_CYA ="96m"; //Light Cyan
-   private final String L_WHI ="97m"; //Light White
-
    public UIExplore explore;
    public UICombat combat;
    public Scanner in;
+
+   private Modifier modifierGlobal; //Current color
+   private Color colorGlobal; //Current modifier
 
    public UI()
    {
       in = new Scanner(System.in);
       explore = new UIExplore(this);
       combat = new UICombat(this);
+      modifierGlobal = Modifier.NORMAL;
+      colorGlobal = Color.WHITE;
    }
    
    public void message(String string)
    {
       clear();
-      output("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
+      setCol(Color.L_BLACK); output(string+"\n");
+      setCol(Color.WHITE); output("Press Enter to continue...");
+      //outputRaw("\u001B[90m"+string+"\u001B[0m\nPress Enter to continue...");
       input();
    }
 
    public void output(String string)
    {
-      //Escapecode + Modifier + Color + String
-      //System.out.print("\033"+"[0;"+"30m"+string+);
+      output(string, colorGlobal, modifierGlobal);
+   }
+
+   public void output(String string, Color color) { output(string, color, modifierGlobal); }
+
+   public void output(String string, Modifier modifier) { output(string, colorGlobal, modifier); }
+
+   public void output(String string, Color color, Modifier modifier)
+   {
+      //Escapecode + Modifier + Color + String + Reset
+      String mod = modString(modifier);
+      String col = colString(color); 
+      System.out.print("\033"+mod+col+string+"\033[0;37m");
+   }
+
+   public void outputRaw(String string)
+   {
       System.out.print(string);
    }
    
@@ -60,6 +56,73 @@ public class UI
    {
       System.out.print("\n>");
       return in.nextLine();
+   }
+   public void setMod(Modifier modifier) { modifierGlobal = modifier; }
+
+   private String modString(Modifier modifier)
+   {
+      switch(modifier)
+      {
+         case NORMAL:
+            return "[0;";
+         case BOLD:
+            return "[1;";
+         case UNDERLINE:
+            return "[2;";
+         default:
+            return "[0;";
+      }
+   }
+
+   public void setCol(Color color) { colorGlobal = color; }
+   
+   private String colString(Color color)
+   {
+      switch(color)
+      {
+         case BLACK:
+            return "30m";
+         case RED:
+            return "31m";
+         case GREEN:
+            return "32m";
+         case YELLOW:
+            return "33m";
+         case BLUE:
+            return "34m";
+         case PURPLE:
+            return "35m";
+         case CYAN:
+            return "36m";
+         case WHITE:
+            return "37m";
+
+         case L_BLACK:
+            return "90m";
+         case L_RED:
+            return "91m";
+         case L_GREEN:
+            return "92m";
+         case L_YELLOW:
+            return "93m";
+         case L_BLUE:
+            return "94m";
+         case L_PURPLE:
+            return "95m";
+         case L_CYAN:
+            return "96m";
+         case L_WHITE:
+            return "97m";
+
+         default:
+            return "37;";
+      }
+   }
+
+   public void reset()
+   {
+      colorGlobal = Color.WHITE;
+      modifierGlobal = Modifier.NORMAL;
    }
 
    public void clear()
