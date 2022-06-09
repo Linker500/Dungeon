@@ -2,9 +2,9 @@ package dungeon;
 
 public class Tile //TODO: do I really want to store ASCII art in a data structure? Shouldn't this be a class for UI or something
 {
-    String[] art;
+    public String[] art;
 
-    boolean isWall;
+    public boolean isWall;
 
     public Tile()
     {

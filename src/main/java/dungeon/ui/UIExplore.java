@@ -1,4 +1,8 @@
-package dungeon;
+package dungeon.ui;
+
+import dungeon.Explore;
+import dungeon.Map;
+import dungeon.Party;
 
 public class UIExplore
 {

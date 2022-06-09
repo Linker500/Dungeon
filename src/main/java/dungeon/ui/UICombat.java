@@ -1,6 +1,12 @@
-package dungeon;
+package dungeon.ui;
 
 import java.util.ArrayList;
+
+import dungeon.Combat;
+import dungeon.Party;
+import dungeon.Character;
+
+import dungeon.Action;
 import dungeon.actions.*; //TODO: this shouldn't be here when skills are properly implemented
 
 public class UICombat

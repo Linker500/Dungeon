@@ -1,4 +1,7 @@
-package dungeon; //TODO make dungeon package?
+package dungeon;
+
+import dungeon.ui.UI;
+import dungeon.ui.UIExplore;
 
 public class Explore //Dungeon scenario, with PCs exploring dungeon
 {
@@ -10,14 +13,14 @@ public class Explore //Dungeon scenario, with PCs exploring dungeon
       High
    }
 
-   UI ui;
-   Map map;
-   Party pc;
-   int x;
-   int y;
+   public UI ui;
+   public Map map;
+   public Party pc;
+   public int x;
+   public int y;
    //int threat = 0; //TODO: make this an enum
-   Threat threat = Threat.None;
-   double encRate = 0.50; //TODO: move to map object
+   public Threat threat = Threat.None;
+   public double encRate = 0.50; //TODO: move to map object
 
    public Explore(UI newUI, Party newPC)
    {

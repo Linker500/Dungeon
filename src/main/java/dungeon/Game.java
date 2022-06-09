@@ -1,7 +1,8 @@
 package dungeon;
 
-import java.util.Scanner; //TODO: remove
-import dungeon.characters.*; //TODO Temporary
+//TODO: these imports are temp
+import dungeon.ui.*;
+import dungeon.characters.*;
 
 public class Game
 {
@@ -63,9 +64,10 @@ public class Game
 
     public static void sandbox() //Trash testing function
     {
-        Scanner i = new Scanner(System.in);
-        System.out.println(i.next().charAt(0));
-
+        System.out.println("White");
+        //System.out.println("\033[0;97mHI White");
+        System.out.println("\033[1;37mBold White");
+        //System.out.println("\033[1;97mBold HI White");
 
     //**************************************************************//
         while(true){} //Just to not enter rest of code 

@@ -2,13 +2,16 @@ package dungeon; //TODO make combat package?
 
 import java.util.ArrayList;
 
+import dungeon.ui.UI;
+import dungeon.ui.UICombat;
+
 public class Combat //Combat scenario. Two partyies fighting.
                     //Most likely PC vs NPC, but NPC v NPC is possible too.
 {
-    UI ui;
-    Party pc;
-    Party npc;
-    int round;
+    public UI ui;
+    public Party pc;
+    public Party npc;
+    public int round;
 
     public Combat(UI newUI, Party newPc, Party newNpc)
     {
@@ -31,6 +34,7 @@ public class Combat //Combat scenario. Two partyies fighting.
             return false;
         }
         
+        ui.combat.message("Victory!");
         return true;
     }
 
