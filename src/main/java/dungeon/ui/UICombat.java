@@ -7,7 +7,8 @@ import dungeon.Party;
 import dungeon.Character;
 
 import dungeon.Action;
-import dungeon.actions.*; //TODO: this shouldn't be here when skills are properly implemented
+import dungeon.Ability;
+import dungeon.abilities.*; //TODO: this shouldn't be here when skills are properly implemented
 
 public class UICombat
 {
@@ -48,7 +49,7 @@ public class UICombat
             while(loop) //TODO unclean being here? idk
             {
                 clear(3);
-                output("What would you like to do?\n");
+                output("What would you like to do?\n", Color.L_BLACK);
                 output("(a)"); output("ttack; ", Color.L_BLACK);
                 output("(s)"); output("upport; ", Color.L_BLACK);
                 output("(d)"); output("efend; ", Color.L_BLACK);
@@ -67,7 +68,7 @@ public class UICombat
                         if(target == -1) //If targeting was cancelled
                             break;
                         
-                        Action action = new Attack(user, npc, target);
+                        Action action = new Action(new Attack(), user, npc, target);
                         actions.add(action);
                         loop = false;
                         break;
@@ -75,7 +76,7 @@ public class UICombat
 
                     case("d"):
                     {
-                        Action action = new Defend(user, null, -1);
+                        Action action = new Action(new Defend(), user, null, -1);
                         actions.add(action);
                         loop = false;
                         break;

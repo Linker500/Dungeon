@@ -53,7 +53,7 @@ public class Combat //Combat scenario. Two partyies fighting.
         for(Action i : actions)
         {
             if(i.getUser().lp > 0)
-                ui.combat.combatLog(i.use(), i); //TODO; this and ui.combat.combatInput() dumb. Should just be ui.combat.log()?
+                ui.combat.combatLog(i.act(), i); //TODO; this and ui.combat.combatInput() dumb. Should just be ui.combat.log()?
             
             if(pc.defeated() || npc.defeated())
             {

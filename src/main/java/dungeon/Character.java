@@ -1,5 +1,12 @@
 package dungeon;
 import dungeon.intelligences.AttackSpam;
+import dungeon.Ability;
+
+//TODO: temp
+import dungeon.abilities.Attack;
+import dungeon.abilities.Deletion;
+
+import java.util.ArrayList;
 
 public class Character
 {
@@ -16,35 +23,31 @@ public class Character
     public int foc; //Focus (EP and magical abilities)
     public int vit; //Vitality (LP, and defensive abilities)
 
-    public boolean guard; //If character is guarding. Static halving of all damage taken post damage reduction
+    public ArrayList<Ability> attacks = new ArrayList<Ability>();
+    public ArrayList<Ability> supports = new ArrayList<Ability>();
+
+    public boolean guard; //If character is guarding. Static halving of all damage taken post damage reduction 
 
     public Intelligence intelligence;
 
     public Character()
     {
-        intelligence = new AttackSpam();
-
-        str = 1;
-        agi = 1;
-        foc = 1;
-        vit = 1;
-
-        init();
+        this("Name",1,1,1,1);
     }
 
-    public Character(String newName, int newLpMax, int newEpMax)
+    public Character(String newName, int newStr, int newVit, int newAgi, int newFoc)
     {
         intelligence = new AttackSpam();
 
-        str = 1;
-        agi = 1;
-        foc = 1;
-        vit = 1;
-
         name = newName;
-        lpMax = newLpMax;
-        epMax = newEpMax;
-        
+        str = newStr;
+        vit = newVit;
+        agi = newAgi;
+        foc = newFoc;
+
+        attacks.add(new Attack());
+        attacks.add(new Deletion());
+
         init();
     }
 
@@ -75,12 +78,21 @@ public class Character
             lp = lpMax;
     }
 
-    public void damage(int damaged) //Lose lp
+    public void damage(int damage) //Lose lp
     {
+        int damaged = 0;
+
+        //Guarding cuts damage in half
         if(guard)
-            lp -= damaged/2;
+            damaged = damage/2;
         else
-            lp -= damaged;
+            damaged = damage;
+
+        //Cannot do less than 1 damage
+        if(damaged < 1) 
+            damaged = 1;
+        
+        lp -= damaged;
 
         if(lp < 0)
             lp = 0;
@@ -121,6 +133,6 @@ public class Character
 
     public void neutralize() //Remove all buffs and debuffs
     {
-
+        guard = false;
     }
 }

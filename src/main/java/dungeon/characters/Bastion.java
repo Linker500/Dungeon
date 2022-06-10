@@ -13,9 +13,9 @@ public class Bastion extends Character
         name = "Bastion";
 
         str = 4; //Strength (Attack power and physical abilities)
+        vit = 5; //Vitality (LP, and defensive abilities)
         agi = 2; //Agility (Iniative and precision abilities)
         foc = 3; //Focus (EP and magical abilities)
-        vit = 5; //Vitality (LP, and defensive abilities)
 
         init(); //Resets LP and EP stats, guard state, etc.
     }

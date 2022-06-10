@@ -71,9 +71,9 @@ public class Explore //Dungeon scenario, with PCs exploring dungeon
             ui.explore.message("A wild group of monsters attacks!");
 
             Party npc = new Party();
-            npc.add(new Character("Mouse",2,3));
-            npc.add(new Character("Rat",3,5));
-            npc.add(new Character("Mouse",2,3));
+            npc.add(new Character("Mouse",1,1,1,1));
+            npc.add(new Character("Rat",2,1,1,1));
+            npc.add(new Character("Mouse",1,1,1,1));
             Combat combat = new Combat(ui, pc, npc);
             
             combat.start();

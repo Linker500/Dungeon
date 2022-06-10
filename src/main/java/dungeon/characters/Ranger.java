@@ -13,9 +13,9 @@ public class Ranger extends Character
         name = "Ranger";
 
         str = 3; //Strength (Attack power and physical abilities)
+        vit = 2; //Vitality (LP, and defensive abilities)
         agi = 5; //Agility (Iniative and precision abilities)
         foc = 4; //Focus (EP and magical abilities)
-        vit = 2; //Vitality (LP, and defensive abilities)
 
         init(); //Resets LP and EP stats, guard state, etc.
     }
