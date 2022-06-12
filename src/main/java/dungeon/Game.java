@@ -10,8 +10,8 @@ public class Game
     {
         //sandbox();
         
-        exploreTest();
-        //combatTest();
+        //exploreTest();
+        combatTest();
         //uiExperiment();
 
         System.out.println("\033[0m\n"); //Change text back to white and linebreak on program end
@@ -20,13 +20,16 @@ public class Game
     public static void sandbox() //Trash testing function
     {
         UI ui = new UI();
-        
-        ui.output("Boring Output");
-        System.out.println("\nBoring Println");
-        ui.reset();
-        ui.output("Boring Reset");
+        UICombat uiCombat = new UICombat(ui);
+        UIExplore uiExplore = new UIExplore(ui);
+
+        Party pc = new Party();
+        pc.add(new Martial());
+        pc.add(new Ranger());
+        pc.add(new Mystic());
 
     //**************************************************************//
+        System.out.println("CODE END");
         while(true){} //Just to not enter rest of code 
     }
 

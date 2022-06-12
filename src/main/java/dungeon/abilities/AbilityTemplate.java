@@ -8,6 +8,7 @@ public class AbilityTemplate extends Ability
 {    
     public AbilityTemplate()
     {
+        name = "AbilityTemplate"; //Ingame name of this ability
         epCost = 0; //Energy Point cost of this ability.
     }
 

@@ -9,6 +9,7 @@ public class Attack extends Ability
 {    
     public Attack()
     {
+        name = "Attack";
         epCost = 0; //Energy Point cost of this ability.
     }
 

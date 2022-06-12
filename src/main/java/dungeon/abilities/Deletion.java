@@ -8,6 +8,7 @@ public class Deletion extends Ability
 {    
     public Deletion()
     {
+        name = "Deletion";
         epCost = 1; //Energy Point cost of this ability.
     }
 

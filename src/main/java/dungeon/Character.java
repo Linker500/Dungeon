@@ -135,4 +135,14 @@ public class Character
     {
         guard = false;
     }
+
+    public ArrayList<Ability> getAttacks()
+    {
+        return attacks;
+    }
+
+    public ArrayList<Ability> getSupports()
+    {
+        return supports;
+    }
 }

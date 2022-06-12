@@ -54,7 +54,7 @@ public class UICombat
                 output("(s)"); output("upport; ", Color.L_BLACK);
                 output("(d)"); output("efend; ", Color.L_BLACK);
                 output("(f)"); output("lee; ", Color.L_BLACK);
-                output("(c)"); output("ancel;\n", Color.L_BLACK);
+                output("(c)"); output("ancel;", Color.L_BLACK);
 
                 String option = input();
                 option.toLowerCase();
@@ -63,12 +63,34 @@ public class UICombat
                 {
                     case("a"):
                     {
+
+                        int attack = selectAbility(user.getAttacks());
+                        if(attack == -1) //If attack selecting was cancelled
+                            break;
+                            
                         int target = selectTarget(npc); //Prompts player to select target from enemies
-                        
                         if(target == -1) //If targeting was cancelled
                             break;
                         
-                        Action action = new Action(new Attack(), user, npc, target);
+                        Action action = new Action(user.getAttacks().get(attack), user, npc, target);
+
+                        actions.add(action);
+                        loop = false;
+                        break;
+                    }
+
+                    case("s"):
+                    {
+                        int attack = selectAbility(user.getSupports());
+                        if(attack == -1) //If support selecting was cancelled
+                            break;
+                            
+                        int target = selectTarget(npc); //Prompts player to select target from enemies
+                        if(target == -1) //If targeting was cancelled
+                            break;
+                        
+                        Action action = new Action(user.getAttacks().get(attack), user, npc, target);
+
                         actions.add(action);
                         loop = false;
                         break;
@@ -136,6 +158,55 @@ public class UICombat
         printInfo();
         output(caption);
         wait(2000); //TODO: maybe make player hit enter after each message
+    }
+
+    public int selectAbility(ArrayList<Ability> abilities)
+    {
+        boolean loop = true;
+
+        int ability = -1;
+
+        if(abilities.size() == 0)
+        {
+            output("They have no abilities!");
+            wait(1000);
+            return ability;
+        }
+
+        while(loop)
+        {
+            clear(3);
+            
+            String list = "";
+            for(int i=0; i<abilities.size(); i++)
+                list += (i+1)+": \033[90m"+abilities.get(i).name+";\033[0m ";
+            outputRaw("Select your ability:\n"+list+"\033[0m(c)\033[90mancel;\033[0m");
+            String input = input();
+            input.toLowerCase();
+
+            try
+            {
+                ability = Integer.parseInt(input);
+                if(ability > 0 && ability < abilities.size()+1)
+                    loop = false;
+                else
+                {
+                    output("Invalid input!");
+                    wait(1000);
+                }
+            }
+
+            catch(Exception e)
+            {
+                if(input.equals("c"))
+                    return -1;
+                
+                output("Invalid input!");
+                wait(1000);
+            }
+        }
+
+        return ability-1;
     }
 
     public int selectTarget(Party party)

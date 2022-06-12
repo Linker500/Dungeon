@@ -8,6 +8,7 @@ public class Defend extends Ability
 {    
     public Defend()
     {
+        name = "Defend";
         epCost = 0; //Energy Point cost of this action.
     }
 
