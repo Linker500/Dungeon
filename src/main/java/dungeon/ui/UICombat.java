@@ -8,7 +8,7 @@ import dungeon.Character;
 
 import dungeon.Action;
 import dungeon.Ability;
-import dungeon.abilities.*; //TODO: this shouldn't be here when skills are properly implemented
+import dungeon.abilities.Defend;
 
 public class UICombat
 {

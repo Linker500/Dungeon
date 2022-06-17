@@ -1,8 +1,10 @@
 dungeon/abilities/Defend.class
+dungeon/ui/UITown.class
 dungeon/Combat.class
 dungeon/ui/Modifier.class
 dungeon/characters/Mystic.class
 dungeon/Explore.class
+dungeon/Town.class
 dungeon/characters/Bastion.class
 dungeon/Game.class
 dungeon/abilities/Attack.class
