@@ -41,6 +41,8 @@ public class UICombat
                 loop = true;
 
             clear();
+            ui.reset();
+
             outputRaw(stringCombat(pc, npc, round, i));
             output(user.name + "'s turn\n");
             output("Current status effects: NOT IMPLEMENTED\n", Color.L_BLACK);

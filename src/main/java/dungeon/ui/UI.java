@@ -7,6 +7,7 @@ public class UI
 {
    public UIExplore explore;
    public UICombat combat;
+   public UITown town;
    public Scanner in;
 
    private Modifier modifierGlobal; //Current color
@@ -17,6 +18,7 @@ public class UI
       in = new Scanner(System.in);
       explore = new UIExplore(this);
       combat = new UICombat(this);
+      town = new UITown(this);
       modifierGlobal = Modifier.NORMAL;
       colorGlobal = Color.WHITE;
    }

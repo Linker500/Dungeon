@@ -26,6 +26,7 @@ public class UIExplore
         while(loop) //TODO unclean being here? idk
         {
             clear();
+            ui.reset();
             printInfo();
             output("Threat level: " + e.threat+"\n", Color.L_BLACK);
             output("What would you like to do?\n");

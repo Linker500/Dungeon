@@ -10,8 +10,10 @@ public class Game
     {
         //sandbox();
         
+        primary();
         //exploreTest();
-        combatTest();
+        //combatTest();
+        
         //uiExperiment();
 
         System.out.println("\033[0m\n"); //Change text back to white and linebreak on program end
@@ -33,10 +35,26 @@ public class Game
         while(true){} //Just to not enter rest of code 
     }
 
+    public static void primary()
+    {
+        UI ui = new UI();
+
+        Party pc = new Party();
+        pc.add(new Martial());
+        pc.add(new Ranger());
+        pc.add(new Mystic());
+
+        
+
+        Town town = new Town(ui, pc);
+        
+        town.start();
+    }
+
     public static void exploreTest()
     {
         UI ui = new UI();
-        UICombat uiCombat = new UICombat(ui);
+        //UICombat uiCombat = new UICombat(ui); //TODO does this break if I comment it out? Test this function
 
         Party pc = new Party();
         pc.add(new Martial());
