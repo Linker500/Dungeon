@@ -10,7 +10,7 @@ public class Map
    Tile w = wall;
    //TODO this is tempppp
    Tile map[][] = {
-      {w,r,r,w,w,w,r,r},
+      {r,r,r,w,w,w,r,r},
       {w,r,r,r,r,r,r,r},
       {w,r,w,r,r,r,w,w},
       {w,r,w,w,w,r,r,w},
